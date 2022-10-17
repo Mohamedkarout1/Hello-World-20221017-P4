@@ -1,5 +1,5 @@
 # Hello World
-Cs10 lessoo
+Cs10 lesson
 
 ---
 
