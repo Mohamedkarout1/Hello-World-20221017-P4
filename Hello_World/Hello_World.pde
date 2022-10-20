@@ -17,8 +17,6 @@ void setup() {
     println(instruct);
   } else {
     println("Display: Good to Go");
-    circle(224, 184, 220);
-    circle(24, 184, 455);
     if ( appWidth > displayWidth ) { //Fitting CANVAS into Monitor Display
       appWidth=0;
       appHeight=0;
@@ -30,7 +28,11 @@ void setup() {
 } //End setup
 //
 void draw() {
-  ellipse(50, 100, 10, 120);
+circle(224, 184, 220);
+circle(90, 184, 220);
+
+
+
 } //End draw
 //
 void keyPressed() {
