@@ -30,6 +30,7 @@ void setup() {
 void draw() {
 circle(224, 184, 220);
 circle(90, 184, 220);
+triangle(110, 300, 232, 80, 344, 300);
 
 
 
