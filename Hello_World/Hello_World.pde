@@ -1,5 +1,6 @@
 //Global Variables
 int appWidth, appHeight;
+float centerX, centerY, xStart, yStart, widthRect, heightRect;
 //
 void setup() {
   //Declaring Display Geometry: landscape, square, portrait
@@ -25,15 +26,25 @@ void setup() {
       //Empty ELSE
     }
   }
+  //Population
+  centerX = width * 1/2;
+  centerY = height * 1/2;
+  xStart = centerX - ( width * 1/4 );
+  yStart  = centerY - ( height * 1/4 );
+  widthRect = width * 1/2;
+  heightRect = height * 1/2;
 } //End setup
 //
 void draw() {
-circle(224, 184, 220);
-circle(90, 184, 220);
-triangle(110, 300, 232, 80, 344, 300);
-
-
-
+  // New Background Function "covers" old gray scale background()
+  // Night Mode means background cannot have blue // change randome for night mode, hard code "0"
+  background(100); //Gray Scale (0-255) & Blue Issue for night mode
+  //
+  //Casting Reminder
+  background( color( r, g, b ) ); // Colour without blue
+  circle(224, 184, 220); 
+  circle(90, 184, 220); 
+  triangle(110, 300, 232, 80, 344, 300);
 } //End draw
 //
 void keyPressed() {
