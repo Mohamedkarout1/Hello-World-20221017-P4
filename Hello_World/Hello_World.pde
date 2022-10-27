@@ -1,6 +1,8 @@
 //Global Variables
 int appWidth, appHeight;
 float centerX, centerY, xStart, yStart, widthRect, heightRect;
+color balckNightModes=#000000; //Hexidecimal
+float thin, normal, thick=5;
 //
 void setup() {
   //Declaring Display Geometry: landscape, square, portrait
@@ -29,10 +31,13 @@ void setup() {
   //Population
   centerX = width * 1/2;
   centerY = height * 1/2;
-  xStart = centerX - ( width * 1/4 );
+  xStart = centerX - ( appWidth * 1/4 );
   yStart  = centerY - ( height * 1/4 );
   widthRect = width * 1/2;
   heightRect = height * 1/2;
+  thin = appWidth / appWidth; //1
+  normal = appWidth  * 1/70;
+  thick = appWidth  * 1/35;
 } //End setup
 //
 void draw() {
@@ -41,10 +46,14 @@ void draw() {
   background(100); //Gray Scale (0-255) & Blue Issue for night mode
   //
   //Casting Reminder
-  background( color( r, g, b ) ); // Colour without blue
+  background ( color( 55, 0 , 0 )); // Color without blue
+  //
   circle(224, 184, 220); 
   circle(90, 184, 220); 
   triangle(110, 300, 232, 80, 344, 300);
+  strokeWeight(1); //default reset 
+  //
+  strokeWeight( thick );
 } //End draw
 //
 void keyPressed() {
