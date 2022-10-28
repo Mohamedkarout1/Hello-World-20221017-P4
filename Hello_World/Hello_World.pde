@@ -3,6 +3,7 @@ int appWidth, appHeight;
 float centerX, centerY, xStart, yStart, widthRect, heightRect;
 color balckNightModes=#000000; //Hexidecimal
 float thin, normal, thick=5;
+boolean nightmode=false, randomBackground=false;
 //
 void setup() {
   //Declaring Display Geometry: landscape, square, portrait
