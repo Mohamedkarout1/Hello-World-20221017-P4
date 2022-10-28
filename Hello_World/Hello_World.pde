@@ -1,82 +1,44 @@
-//Global Variables
-int appWidth, appHeight;
-float centerX, centerY, xStart, yStart, widthRect, heightRect;
-color blackNightMode=#000000, yellow=#F8FC64, purple=#FA00F6, white=#FFFFFF; 
-color yellowNightMode=#F8FC00, purpleNightMode=#FA0096;//Hexidecimal
-float thin, normal, thick;
-Boolean grayScale=false, backgroundColour=false, nightMode=false;
-//
+int numCircles = 500;
+Circle[] circles = new Circle[numCircles]; // define the array
+
 void setup() {
-  //Declaring Display Geometry: landscape, square, portrait
-  size(700, 400); //Able to deploy with fullScreen();
-  //fullScreen();
-  appWidth = width;
-  appHeight = height;
-  //Concatenation: , or + (i.e space)
-  println("\t\t\tWidth="+width, "\tHeight="+height);
-  println("Display Monitor:", "\twidth:"+displayWidth, "\theight:"+displayHeight);
-  //
-  String ls="Landscape or Square", p="portrait", DO="Display Orientation", instruct="Bru, turn your phun";
-  //
-  if ( appWidth < appHeight ) { //Declaring Landscape & square
-    println(instruct);
-  } else {
-    println("Display: Good to Go");
-    if ( appWidth > displayWidth ) { //Fitting CANVAS into Monitor Display
-      appWidth=0;
-      appHeight=0;
-      println("STOP, is broken");
-    } else {
-      //Empty ELSE
-    }
+  size(1439,800);
+  smooth();
+  noStroke();
+  for (int i=0; i<numCircles; i++) {
+    circles[i] = new Circle(random(width),random(height)); // fill the array with circles at random positions
   }
-  //Population
-  centerX = appWidth * 1/2;
-  centerY = height * 1/2;
-  xStart = centerX - ( appWidth * 1/4 );
-  yStart  = centerY - ( height * 1/4 );
-  widthRect = appWidth * 1/2;
-  heightRect = height * 1/2;
-  thin = appWidth / appWidth; //1
-  normal = appWidth * 1/70;
-  thick = appWidth * 1/35;
-} //End setup
-//
+}
+
+
 void draw() {
-  // New Background Function "covers" old gray scale background()
-  // Night Mode means background cannot have blue // change randome for night mode, hard code "0"
-  if ( grayScale == true ) background(100); //Gray Scale (0-255) & Blue Issue for night mode
-  //
-  //Casting Reminder
-  if ( backgroundColour == true ) background( color( random(0 , 255), random(0 , 255), random(0 , 255) ) ); // Colour without blue
-  //
-  strokeWeight( thick );
-  if ( nightMode == true )
-  {
-    background( blackNightMode );
-    stroke( yellowNightMode ); 
-    fill( purpleNightMode ); 
-  } else
-  {
-    stroke( yellow ); 
-    fill( purple ); 
+  background(205);
+  for (int i=0; i<numCircles; i++) {
+    square(100, 100, 100);
+    circles[i].display(); // display all the circles
   }
-  rect(xStart, yStart, widthRect, heightRect);
-  fill( white ); //default reset
-  stroke( blackNightMode ); //default reset
-  strokeWeight(1); //default reset
-} //End draw
-//
-void keyPressed() {
-  grayScale = false;
-  backgroundColour = false;
-  if ( key == 'G' || key == 'g' ) grayScale = true;
-  if ( key == 'B' || key == 'b' ) backgroundColour = true;
-} //End keyPressed
-//
-void mousePressed() {
-  if ( mouseButton == LEFT ) nightMode = true;
-  if ( mouseButton == RIGHT ) nightMode = false;
-} //End mousePressed
-//
-// End Main Program
+}
+
+class Circle {
+  float x,y; // location
+  float dim; // dimension
+  color c; // color
+ 
+  Circle(float x, float y) {
+    this.x = x;
+    this.y = y;
+    dim = random(20,50);
+    c = color(random(255));
+  }
+
+  
+  void display() {
+    float distance = dist(x,y,mouseX,mouseY); // distance between circle and mouse
+    if (distance < 255) { // if distance is smaller than 255
+      fill(255-distance);
+    } else { // if distance is bigger than 255
+      fill(c);
+    }
+    ellipse(x,y,dim,dim); // a circle at position xy
+  }
+}
